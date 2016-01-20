@@ -4,14 +4,23 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
 	</head>
-	<body>
-		<!-- ng-controller is the directive, 
+
+	<!-- ng-controller is the directive, 
 		the attribute is the controller's name (StoreController). Followed by a key word "as" and an alias for the controller: "store", to use it inside of 
 		the expressions-->
-		<div ng-controller = "StoreController as store">
-			<h1> {{store.product.name}}</h1>
-			<h2> ${{store.product.price}}</h2>
-			<p> {{store.product.description}}</p>
+	<body ng-controller = "StoreController as store">
+
+	<!-- hide this when product is sold out: 
+	ng-hide="store.product.soldOut" 
+
+	ng-repeat="product in store.products" allows you to
+	iterate and execute the code for product in store.product-->
+		<div ng-repeat="product in store.products">
+			<h1> {{product.name}}</h1>
+			<h2> ${{product.price}}</h2>
+			<p> {{product.description}}</p>
+			<!-- only show the button if canPurchase is true -->
+			<button ng-show="product.canPurchase"> Add to cart</button>
 		</div>
 		<script type="text/javascript" src="angular.min.js"></script>
 		<script type="text/javascript" src="app.js"></script>
