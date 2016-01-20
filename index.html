@@ -5,9 +5,6 @@
 		<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
 	</head>
 
-	<!-- ng-controller is the directive, 
-		the attribute is the controller's name (StoreController). Followed by a key word "as" and an alias for the controller: "store", to use it inside of 
-		the expressions-->
 	<body ng-controller = "StoreController as store">
 		<ul class="list-group">
 			<li class="list-group-item" ng-repeat="product in store.products">
