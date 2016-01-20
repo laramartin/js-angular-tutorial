@@ -9,17 +9,23 @@
 		// 2nd argument is a function that is called when 
 		// StoreController is called
 	app.controller("StoreController", function(){
-		this.product = gem;
+		this.products = gems;
 	});
 
-	var gem = {
-		name: "Dodecahedron", 
-		price: 2.95,
-		description: "Some gems have hidden qualities beyond their luster, beyond their shine... Dodeca is one of those gems.",
-	}
+	var gems = [{
+			name: "Dodecahedron", 
+			price: 2.95,
+			description: "Dodecahedron description.",
+			canPurchase: false,
+			soldOut: true,
+		},
+		{
+			name: "Pentagonal Gem", 
+			price: 5.95,
+			description: "Pentagonal Gem description.",
+			canPurchase: false,
+			soldOut: true,
+		}
+	];
 
 })();
-
-
-	
-
