@@ -11,22 +11,22 @@
 				<h3>
 					{{product.name}}
 					<em class="pull-right">{{product.price  | currency}}</em>
+					<img ng-src="{{product.images[0].full}}"/>
 				</h3>
 			</li>
 		</ul>
+
+		<section>
+		<ul class="nav nav-pills">
+			<li> <a href ng-click="tab = 1">Description</a></li>
+			<li> <a href ng-click="tab = 2">Specifications</a></li>
+			<li> <a href ng-click="tab = 3">Reviews</a></li>
+		</ul>
+		<!-- print the tab value to see it on the page -->
+		{{tab}}
+		</section>
 
 		<script type="text/javascript" src="angular.min.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 	</body>
 </html>
-
-<!-- types of filters: 
-date:  {{"1234567890" | date: "MM/dd/yyyy @ h_mma"}}  01/01/2016 @ 12:50AM 
-
-upper- and lowercase: {{"octagon gem" | uppercase}}    OCTAGON GEM
-
-limitTo: {{"My Description" | limitTo: 8}}  My Descr 
-		<li ng-repeat="product in store.products | limitTo: 3"> 
-
-orderBy: <li ng-repeat="product in store.products | orderBy:"-price""> 
--->
