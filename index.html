@@ -19,3 +19,14 @@
 		<script type="text/javascript" src="app.js"></script>
 	</body>
 </html>
+
+<!-- types of filters: 
+date:  {{"1234567890" | date: "MM/dd/yyyy @ h_mma"}}  01/01/2016 @ 12:50AM 
+
+upper- and lowercase: {{"octagon gem" | uppercase}}    OCTAGON GEM
+
+limitTo: {{"My Description" | limitTo: 8}}  My Descr 
+		<li ng-repeat="product in store.products | limitTo: 3"> 
+
+orderBy: <li ng-repeat="product in store.products | orderBy:"-price""> 
+-->
