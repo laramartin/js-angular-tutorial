@@ -39,6 +39,17 @@
 			}],
 			canPurchase: false,
 			soldOut: true,
+			reviews: [
+			{
+				stars: 5, 
+				body: "I love this product!", 
+				author: "joe@thomas.com"
+			},
+			{
+				stars: 1, 
+				body: "This product sucks", 
+				author: "tim@hater.com"
+			}],
 		},
 		{
 			name: "Pentagonal Gem", 
