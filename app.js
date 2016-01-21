@@ -12,13 +12,25 @@
 		this.products = gems;
 	});
 
+	app.controller("PanelController", function(){
+		this.tab = 1;
+
+		this.selectTab = function(setTab){
+			this.tab = setTab;
+		};
+
+		this.isSelected = function(checkTab){
+			return this.tab === checkTab;
+		};
+		});
+
 	var gems = [{
 			name: "Dodecahedron", 
 			price: 2.95,
 			description: "Dodecahedron description.",
 			images: [
 			{
-				full: "dodecahedron-01-full.jpg", 
+				full: "dode01.jpg", 
 				thumb: "dodecahedron-01-thumb.jpg"
 			},
 			{
@@ -34,7 +46,7 @@
 			description: "Pentagonal Gem description.",
 			images: [
 			{
-				full: "Pentagonal-01-full.jpg", 
+				full: "penta01.jpg", 
 				thumb: "Pentagonal-01-thumb.jpg"
 			},
 			{
