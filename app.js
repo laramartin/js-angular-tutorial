@@ -22,7 +22,19 @@
 		this.isSelected = function(checkTab){
 			return this.tab === checkTab;
 		};
-		});
+	});
+
+	app.controller("ReviewController", function(){
+		this.review = {};
+
+		this.addReview = function(product){
+			// push review onto this product's reviews array
+			product.reviews.push(this.review);
+
+			// clear out the review, so the form will reset
+			this.review = {};
+		};
+	});
 
 	var gems = [{
 			name: "Dodecahedron", 
@@ -66,6 +78,17 @@
 			}],
 			canPurchase: false,
 			soldOut: true,
+			reviews: [
+			{
+				stars: 3, 
+				body: "meh", 
+				author: "amir@gem.com"
+			},
+			{
+				stars: 3, 
+				body: "it is small", 
+				author: "dont@hater.com"
+			}],
 		}
 	];
 
