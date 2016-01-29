@@ -47,7 +47,7 @@
 
 
 						<!-- ng-submit allows to call a function when the form is submitted -->
-						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
 
 							<!-- live preview -->
 							<blockquote>
@@ -59,16 +59,20 @@
 							<!-- submit a review -->
 							<h4>Submit a Review</h4>
 							<fieldset class="form-group">
-								<select class="form-control" ng-model="reviewCtrl.review.stars">
+								<select class="form-control" ng-model="reviewCtrl.review.stars" required>
 									<option class="form-control" value="1">1 star</option>
 									<option class="form-control" value="2">2 stars</option>
 									<option class="form-control" value="3">3 stars</option>
 									<option class="form-control" value="4">4 stars</option>
 									<option class="form-control" value="5">5 stars</option>
 								</select>
-								<textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write your review here"></textarea>
+
+								<textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write your review here" required></textarea>
 								<label>by:</label>
-								<input class="form-control" ng-model="reviewCtrl.review.author" type="email" placeholder="Enter email"/>
+								<input class="form-control" ng-model="reviewCtrl.review.author" type="email" placeholder="Enter email" required/>
+								
+								<div> reviewForm is {{reviewForm.$valid}} </div>
+
 								<input class="form-control" type="submit" value="Submit" />
 							</fieldset>
 
