@@ -36,6 +36,16 @@
 		};
 	});
 
+	/*building custom directives*/
+	app.directive('productTitle', function(){
+		return {
+			/*type of directive, E for Element*/
+			restrict: "E",
+			/*url of a template*/
+			templateUrl: "product-title.html"
+		};
+	});
+
 	var gems = [{
 			name: "Dodecahedron", 
 			price: 2.95,

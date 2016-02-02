@@ -9,9 +9,8 @@
 <body ng-controller = "StoreController as store">
 	<ul class="list-group">
 		<li class="list-group-item" ng-repeat="product in store.products">
-			<!-- added new directive to no repeat code-->
-			<!-- ng-include expects a variable with the name of the file to include. To pass the name directly as a string, use single quotes (inside the double quotes) -->
-			<h3 ng-include="'product-title.html'"></h3>
+			<!-- using custom directive built -->
+			<product-title></product-title>
 				
 			<img ng-src="{{product.images[0].full}}"/>
 
