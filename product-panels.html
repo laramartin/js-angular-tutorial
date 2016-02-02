@@ -1,0 +1,67 @@
+<section >
+	<ul class="nav nav-pills">
+		<li ng-class="{ active:panels.isSelected(1)}"> 
+			<a href ng-click="panels.selectTab(1)">Description</a>
+		</li>
+		<li ng-class="{ active:panels.isSelected(2) }"> 
+			<a href ng-click="panels.selectTab(2)">Specifications</a>
+		</li>
+		<li ng-class="{ active:panels.isSelected(3)}"> 
+			<a href ng-click="panels.selectTab(3)">Reviews</a>
+		</li>
+	</ul>
+
+
+	<div class="panel" ng-show="panels.isSelected(1)" >
+		<h4>Description</h4>
+		<p>{{product.description}}</p>
+	</div>
+	<div class="panel" ng-show="panels.isSelected(2)">
+		<h4>Specifications</h4>
+		<blockquote>None yet</blockquote>
+	</div>
+	<div class="panel" ng-show="panels.isSelected(3)">
+		<h4>Reviews</h4>
+
+		<li ng-repeat="review in product.reviews">
+			<blockquote >
+				<b>Stars: {{review.stars}}</b>
+				{{review.body}}
+				<cite class="clearfix">{{review.author}}</cite>
+			</blockquote>
+		</li>
+
+
+		<!-- ng-submit allows to call a function when the form is submitted -->
+		<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+
+			<!-- live preview -->
+			<blockquote>
+				<b>Stars: {{reviewCtrl.review.stars}}</b>
+				{{reviewCtrl.review.body}}
+				<cite>by: {{reviewCtrl.review.author}}</cite>
+			</blockquote>
+
+			<!-- submit a review -->
+			<h4>Submit a Review</h4>
+			<fieldset class="form-group">
+				<select class="form-control" ng-model="reviewCtrl.review.stars" required>
+					<option class="form-control" value="1">1 star</option>
+					<option class="form-control" value="2">2 stars</option>
+					<option class="form-control" value="3">3 stars</option>
+					<option class="form-control" value="4">4 stars</option>
+					<option class="form-control" value="5">5 stars</option>
+				</select>
+
+				<textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write your review here" required></textarea>
+				<label>by:</label>
+				<input class="form-control" ng-model="reviewCtrl.review.author" type="email" placeholder="Enter email" required/>
+				
+				<div> reviewForm is {{reviewForm.$valid}} </div>
+
+				<input class="form-control" type="submit" value="Submit" />
+			</fieldset>
+
+		</form>
+	</div>
+</section>
