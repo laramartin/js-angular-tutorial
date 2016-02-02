@@ -9,78 +9,79 @@
 <body ng-controller = "StoreController as store">
 	<ul class="list-group">
 		<li class="list-group-item" ng-repeat="product in store.products">
-			<h3>
-				{{product.name}}
-				<em class="pull-right">{{product.price  | currency}}</em>
-				<img ng-src="{{product.images[0].full}}"/>
+			<!-- added new directive to no repeat code-->
+			<!-- ng-include expects a variable with the name of the file to include. To pass the name directly as a string, use single quotes (inside the double quotes) -->
+			<h3 ng-include="'product-title.html'"></h3>
+				
+			<img ng-src="{{product.images[0].full}}"/>
 
-				<section ng-controller="PanelController as panel">
-					<ul class="nav nav-pills">
-						<li ng-class="{ active:panel.isSelected(1)}"> 
-							<a href ng-click="panel.selectTab(1)">Description</a>
-						</li>
-						<li ng-class="{ active:panel.isSelected(2) }"> 
-							<a href ng-click="panel.selectTab(2)">Specifications</a>
-						</li>
-						<li ng-class="{ active:panel.isSelected(3)}"> 
-							<a href ng-click="panel.selectTab(3)">Reviews</a>
-						</li>
-					</ul>
+			<section ng-controller="PanelController as panel">
+				<ul class="nav nav-pills">
+					<li ng-class="{ active:panel.isSelected(1)}"> 
+						<a href ng-click="panel.selectTab(1)">Description</a>
+					</li>
+					<li ng-class="{ active:panel.isSelected(2) }"> 
+						<a href ng-click="panel.selectTab(2)">Specifications</a>
+					</li>
+					<li ng-class="{ active:panel.isSelected(3)}"> 
+						<a href ng-click="panel.selectTab(3)">Reviews</a>
+					</li>
+				</ul>
 
-					<div class="panel" ng-show="panel.isSelected(1)" >
-						<h4>Description</h4>
-						<p>{{product.description}}</p>
-					</div>
-					<div class="panel" ng-show="panel.isSelected(2)">
-						<h4>Specifications</h4>
-						<blockquote>None yet</blockquote>
-					</div>
-					<div class="panel" ng-show="panel.isSelected(3)">
-						<h4>Reviews</h4>
+				<div class="panel" ng-show="panel.isSelected(1)" >
+					<h4>Description</h4>
+					<p>{{product.description}}</p>
+				</div>
+				<div class="panel" ng-show="panel.isSelected(2)">
+					<h4>Specifications</h4>
+					<blockquote>None yet</blockquote>
+				</div>
+				<div class="panel" ng-show="panel.isSelected(3)">
+					<h4>Reviews</h4>
 
-						<li ng-repeat="review in product.reviews">
-							<blockquote >
-								<b>Stars: {{review.stars}}</b>
-								{{review.body}}
-								<cite class="clearfix">{{review.author}}</cite>
-							</blockquote>
-						</li>
+					<li ng-repeat="review in product.reviews">
+						<blockquote >
+							<b>Stars: {{review.stars}}</b>
+							{{review.body}}
+							<cite class="clearfix">{{review.author}}</cite>
+						</blockquote>
+					</li>
 
 
-						<!-- ng-submit allows to call a function when the form is submitted -->
-						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+					<!-- ng-submit allows to call a function when the form is submitted -->
+					<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
 
-							<!-- live preview -->
-							<blockquote>
-								<b>Stars: {{reviewCtrl.review.stars}}</b>
-								{{reviewCtrl.review.body}}
-								<cite>by: {{reviewCtrl.review.author}}</cite>
-							</blockquote>
+						<!-- live preview -->
+						<blockquote>
+							<b>Stars: {{reviewCtrl.review.stars}}</b>
+							{{reviewCtrl.review.body}}
+							<cite>by: {{reviewCtrl.review.author}}</cite>
+						</blockquote>
 
-							<!-- submit a review -->
-							<h4>Submit a Review</h4>
-							<fieldset class="form-group">
-								<select class="form-control" ng-model="reviewCtrl.review.stars" required>
-									<option class="form-control" value="1">1 star</option>
-									<option class="form-control" value="2">2 stars</option>
-									<option class="form-control" value="3">3 stars</option>
-									<option class="form-control" value="4">4 stars</option>
-									<option class="form-control" value="5">5 stars</option>
-								</select>
+						<!-- submit a review -->
+						<h4>Submit a Review</h4>
+						<fieldset class="form-group">
+							<select class="form-control" ng-model="reviewCtrl.review.stars" required>
+								<option class="form-control" value="1">1 star</option>
+								<option class="form-control" value="2">2 stars</option>
+								<option class="form-control" value="3">3 stars</option>
+								<option class="form-control" value="4">4 stars</option>
+								<option class="form-control" value="5">5 stars</option>
+							</select>
 
-								<textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write your review here" required></textarea>
-								<label>by:</label>
-								<input class="form-control" ng-model="reviewCtrl.review.author" type="email" placeholder="Enter email" required/>
-								
-								<div> reviewForm is {{reviewForm.$valid}} </div>
+							<textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write your review here" required></textarea>
+							<label>by:</label>
+							<input class="form-control" ng-model="reviewCtrl.review.author" type="email" placeholder="Enter email" required/>
+							
+							<div> reviewForm is {{reviewForm.$valid}} </div>
 
-								<input class="form-control" type="submit" value="Submit" />
-							</fieldset>
+							<input class="form-control" type="submit" value="Submit" />
+						</fieldset>
 
-						</form>
-					</div>
-				</section>
-			</h3>
+					</form>
+				</div>
+			</section>
+			
 		</li>
 	</ul>
 
